@@ -20,7 +20,7 @@ The pipeline is designed to automate the deployment process for your project. It
 
 1. Make sure you have Jenkins set up with the required plugins and agents.
 
-2. Update the pipeline script with your specific details, such as GitLab repository URL, Docker Hub credentials, and deployment server information.
+2. Update the pipeline script with your specific details, such as GitHub repository URL, Docker Hub credentials, and deployment server information.
 
 3. Configure Jenkins to trigger the pipeline based on your desired events (e.g., code push).
 
