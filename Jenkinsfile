@@ -9,7 +9,7 @@ pipeline {
     stage('Fetch Files') {
       steps {
         // Checkout the code from the GitHub repo
-        git branch: 'master', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
+        git branch: 'main', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
       }
     }
     stage('Build and Test') {
