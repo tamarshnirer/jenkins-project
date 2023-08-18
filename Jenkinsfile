@@ -6,7 +6,7 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
-    stage('Fetch Files') {
+    stage('Fetch files') {
       steps {
         // Checkout the code 
         git branch: 'main', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
