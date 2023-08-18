@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import time
 import requests
@@ -12,7 +13,7 @@ def browser():
     chrome_options.add_argument('--headless')
 
     # Create a WebDriver instance!
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
     # Yield the driver instance!
     yield driver
