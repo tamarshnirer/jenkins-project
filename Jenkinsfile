@@ -9,7 +9,7 @@ pipeline {
     stage('Fetch Files') {
       steps {
         // Checkout the code from the GitLab repo
-        git branch: 'master', credentialsId: 'abbaced3-0f70-47c4-a656-5f04ff149cd8', url: 'http://18.222.84.16/gitlab-instance-90d69a19/weather-app.git'
+        git branch: 'master', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
       }
     }
     stage('Build and Test') {
