@@ -12,7 +12,7 @@ pipeline {
         git branch: 'main', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
       }
     }
-    stage('Build and Test') {
+    stage('Build and test') {
       steps {
         // Build the Docker image
         sh 'sudo docker build -t tamarshnirer/test:latest .'
