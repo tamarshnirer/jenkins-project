@@ -17,7 +17,7 @@ pipeline {
         // Build the Docker image
         sh 'sudo docker build -t tamarshnirer/test:latest .'
         sh 'sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test:latest'
-        sh 'pytest ex3.py'
+        sh 'pytest tests.py'
         sh 'sudo docker stop test_container'
       }
     }
