@@ -14,7 +14,7 @@ def browser():
     chrome_options.add_argument('--headless')
 
     # Create a WebDriver instance!
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version='116.0.5845.96')),options=chrome_options)
 
     # Yield the driver instance!
     yield driver
