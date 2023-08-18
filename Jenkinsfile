@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Fetch Files') {
       steps {
-        // Checkout the code from the GitHub repository
+        // Checkout the code 
         git branch: 'main', credentialsId: 'github_repo', url: 'https://github.com/tamarshnirer/jenkins-project.git'
       }
     }
