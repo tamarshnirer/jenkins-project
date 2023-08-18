@@ -13,13 +13,28 @@ pipeline {
       }
     }
     stage('Build and test') {
+      steps { 
+        sh 'sudo docker build -t tamarshnirer/test:latest .' 
+      }
+    }
+    stage('Run and Test container') {
       steps {
-        // Build the Docker image
-        sh 'sudo docker build -t tamarshnirer/test:latest .'
-        sh 'sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test:latest'
-        sh 'pip install -r requirements.txt'
-        sh "pytest 'workspace/web deployment/tests.py'"
-        sh 'sudo docker stop test_container'
+        script {
+          def containerName = "test_container"
+
+          // Check if the container is running
+          def containerStatus = sh(script: "docker ps --format '{{.Names}}' | grep ${containerName}", returnStatus: true)
+
+          if (containerStatus == 0) {
+            echo "Container ${containerName} is already running."
+            sh 'sudo docker stop test_container'
+          } 
+          sh 'sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test:latest'
+          sh 'pip install -r requirements.txt'
+          sh "pytest 'workspace/web deployment/tests.py'"
+          sh 'sudo docker stop test_container'
+          
+        }
       }
     }
     stage('Login') {
