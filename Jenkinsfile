@@ -52,11 +52,11 @@ pipeline {
       steps {
         script {
           sshagent(credentials: ['deployment']) {
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.26.62 echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.26.62 sudo docker pull tamarshnirer/test'
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.26.62 sudo docker stop $(sudo docker ps -aq) || true'
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.26.62 sudo docker rm $(sudo docker ps -aq) || true'
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.26.62 sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test'
+            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.11.149 echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.11.149 sudo docker pull tamarshnirer/test'
+            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.11.149 sudo docker stop $(sudo docker ps -aq) || true'
+            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.11.149 sudo docker rm $(sudo docker ps -aq) || true'
+            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 172.31.11.149 sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test'
           }
         }
       }
