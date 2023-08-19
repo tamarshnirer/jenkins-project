@@ -31,7 +31,7 @@ pipeline {
             'sudo docker rmi tamarshnirer/test:latest'
           } 
           sh 'sudo docker run --name test_container --rm -d -p 5000:5000 tamarshnirer/test:latest'
-          sh 'pytest /home/ubuntu/workspace/web_deployment/tests.py'
+          sh 'python3 -m pytest /home/ubuntu/workspace/web_deployment/tests.py'
           sh 'sudo docker stop test_container'
           
         }
