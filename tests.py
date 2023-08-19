@@ -9,17 +9,14 @@ import requests
 
 @pytest.fixture(scope='session')
 def browser():
-    # Set Chrome options
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
 
-    # Create a WebDriver instance!
-    driver = webdriver.Chrome("/usr/local/share/chromedriver", options=chrome_options)
+    service = Service("/usr/local/share/chromedriver")
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    # Yield the driver instance!
     yield driver
 
-    # Teardown - quit the driver after the tests
     driver.quit()
 
 def test_reachability():
