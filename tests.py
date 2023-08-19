@@ -22,12 +22,10 @@ def browser():
     # Teardown - quit the driver after the tests
     driver.quit()
 
-
 def test_reachability():
     for i in range(3):
         time.sleep(2)
-        assert (requests.get("http://127.0.0.1:5000/").status_code == 200)
-
+        assert requests.get("http://127.0.0.1:5000/").status_code == 200
 
 def test_locations(browser):
     driver = browser
@@ -38,8 +36,8 @@ def test_locations(browser):
         driver.find_element(By.XPATH, '//*[@id="city"]').send_keys(i[0])
         driver.find_element(By.XPATH, "/html/body/div/form/button").click()
         elements = driver.find_elements(By.XPATH, "//*[text()]")
+        flag = 0  # Initialize flag outside the loop
         for element in elements:
-            flag = 0
             text = element.text
             if i[1] in text:
                 flag = 1
@@ -48,18 +46,17 @@ def test_locations(browser):
             raise ValueError
         driver.find_element(By.XPATH, "/html/body/div/button").click()
 
-
 def test_location_not_found(browser):
+    driver = browser
     locations = ["asdsedrtf", "adsferdhtr", "SDftg"]
     for i in locations:
-        driver = browser
         driver.get("http://127.0.0.1:5000/")
+        time.sleep(2)
         driver.find_element(By.XPATH, '//*[@id="city"]').send_keys(i)
         driver.find_element(By.XPATH, "/html/body/div/form/button").click()
-        time.sleep(2)
         elements = driver.find_elements(By.XPATH, "//*[text()]")
+        flag = 0  # Initialize flag outside the loop
         for element in elements:
-            flag = 0
             text = element.text
             if "not found" in text:
                 flag = 1
